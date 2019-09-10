@@ -1,2 +1,32 @@
 this is first testfile
 adding data
+adding playbook 
+---
+- hosts: mygroup
+  remote_user: ansible
+  become: yes
+  gather_facts: yes
+  vars:
+    pkg1: httpd
+  vars_files:
+    - abc.yml
+  vars_prompt:
+    - name: redhat
+      prompt: ask pkg name
+      pravite: no
+  tasks:
+    - name: install package
+      yum:
+        name: "{{pkg1}} "
+        state: present
+    - name: install finger 
+      yum: 
+        name: "{{pkg2}}"
+        state: latest
+    - name: install pakgge
+      yum: 
+        name: "{{redhat}}"
+        state: absent
+        
+
+
